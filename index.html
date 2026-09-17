@@ -1,302 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marty's Works — Capabilities & Project Showcase</title>
-    <style>
-        :root {
-            /* Modern Tech Dark Theme */
-            --bg-base: #0a0f1d;
-            --bg-surface: #111827;
-            --card-bg: rgba(17, 24, 39, 0.75);
-            --border-subtle: #1f2937;
-            --border-highlight: rgba(56, 189, 248, 0.4);
-            
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
-
-            /* Tech Accents */
-            --accent-cyan: #00f0ff;
-            --accent-blue: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #00f0ff 0%, #3b82f6 100%);
-            
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-base);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.08) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
-            background-attachment: fixed;
-            color: var(--text-primary);
-            font-family: var(--font-stack);
-            line-height: 1.6;
-            padding-bottom: 4rem;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* --- Updated Header Section for Image Banner --- */
-        header {
-            padding: 3rem 0;
-            text-align: center;
-            border-bottom: 1px solid var(--border-subtle);
-            margin-bottom: 3.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header-banner {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid var(--border-subtle);
-            transition: border-color 0.3s ease;
-        }
-
-        header:hover .header-banner {
-            border-color: rgba(0, 240, 255, 0.4);
-        }
-
-        /* Removed redundant title and subtitle styles */
-
-        /* --- Section Titles --- */
-        .section-header {
-            margin-bottom: 2rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section-header h2::before {
-            content: "";
-            width: 4px;
-            height: 1.4rem;
-            background: var(--accent-gradient);
-            border-radius: 2px;
-        }
-
-        /* --- Capabilities Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 4.5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
-            padding: 1.5rem;
-            backdrop-filter: blur(12px);
-            transition: border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
-        }
-
-        .card:hover {
-            border-color: var(--border-highlight);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px -8px rgba(0, 240, 255, 0.15);
-        }
-
-        .card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-            margin-bottom: 1rem;
-            letter-spacing: -0.01em;
-        }
-
-        .card ul {
-            list-style: none;
-        }
-
-        .card li {
-            position: relative;
-            padding-left: 1.2rem;
-            margin-bottom: 0.6rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .card li::before {
-            content: "›";
-            position: absolute;
-            left: 0;
-            top: -1px;
-            color: var(--accent-blue);
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .card li:last-child {
-            margin-bottom: 0;
-        }
-
-        /* --- Project Gallery --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .gallery-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: border-color 0.25s ease, transform 0.2s ease;
-        }
-
-        .gallery-card:hover {
-            border-color: var(--border-highlight);
-            transform: translateY(-3px);
-        }
-
-        .image-frame {
-            width: 100%;
-            height: 230px;
-            background-color: #060a12;
-            border-bottom: 1px solid var(--border-subtle);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            overflow: hidden;
-        }
-
-        .image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-body {
-            padding: 1.25rem 1.5rem;
-        }
-
-        .gallery-body h4 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.4rem;
-        }
-
-        .gallery-body p {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding-top: 2.5rem;
-            border-top: 1px solid var(--border-subtle);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 1.5rem 0; }
-            .gallery-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- Header Section Integrated with image_0.png -->
-        <header>
-            <img src="martys_works_header.jpg" alt="Marty's Works" class="header-banner">
-        </header>
-
-        <!-- Capabilities Section -->
-        <section>
-            <div class="section-header">
-                <h2>Scope of Capabilities</h2>
-            </div>
-            <div class="grid">
-                
-                <div class="card">
-                    <h3>Residential Builds</h3>
-                    <ul>
-                        <li>Custom porch and deck framing</li>
-                        <li>Kitchen and bathroom gut renovations</li>
-                        <li>Structural carpentry and finish trim</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Trades & Field Work</h3>
-                    <ul>
-                        <li>Plumbing rough-ins and line repairs</li>
-                        <li>Electrical troubleshooting and circuits</li>
-                        <li>Fixture and mechanical installation</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Automotive & Mechanical</h3>
-                    <ul>
-                        <li>Brake system rebuilds and overhauls</li>
-                        <li>Suspension struts, shocks, and steering</li>
-                        <li>Engine diagnostics and routine tune-ups</li>
-                        <li>Small engine and power tool repair</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Technical & Systems</h3>
-                    <ul>
-                        <li>HVAC/R system diagnostics</li>
-                        <li>Off-grid and renewable power systems</li>
-                        <li>Custom PC hardware design and builds</li>
-                        <li>IP security cameras and automation</li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Handyman / Remodeling Gallery -->
-        <section>
-            <div class="section-header">
-                <h2>Featured Projects</h2>
-            </div>
-            <div class="gallery-grid">
+<div class="gallery-grid">
 
                 <!-- Porch Card -->
                 <div class="gallery-card">
                     <div class="image-frame">
-                        <!-- Replace with <img src="porch.jpg" alt="Porch Build"> -->
-                        porch.jpg
+                        <img src="porch.jpg" alt="Porch Build">
                     </div>
                     <div class="gallery-body">
                         <h4>Porch Addition</h4>
@@ -307,8 +14,7 @@
                 <!-- Kitchen Card -->
                 <div class="gallery-card">
                     <div class="image-frame">
-                        <Replace with <img src="kitchen.jpg" alt="Kitchen Remodel">
-                       
+                        <img src="kitchen.jpg" alt="Kitchen Remodel">
                     </div>
                     <div class="gallery-body">
                         <h4>Kitchen Renovation</h4>
@@ -319,8 +25,7 @@
                 <!-- Bathroom 1 Card -->
                 <div class="gallery-card">
                     <div class="image-frame">
-                        < Replace with <img src="bathroom-1.jpg" alt="Master Bathroom"> 
-                        
+                        <img src="bathroom-1.jpg" alt="Master Bathroom">
                     </div>
                     <div class="gallery-body">
                         <h4>Master Bathroom I</h4>
@@ -331,8 +36,7 @@
                 <!-- Bathroom 2 Card -->
                 <div class="gallery-card">
                     <div class="image-frame">
-                        <!-- Replace with <img src="bathroom-2.jpg" alt="Master Bathroom Remodel"> -->
-                        bathroom-2.jpg
+                        <img src="bathroom-2.jpg" alt="Master Bathroom Remodel">
                     </div>
                     <div class="gallery-body">
                         <h4>Master Bathroom II</h4>
@@ -341,13 +45,3 @@
                 </div>
 
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            Marty's Works — Systems, Trades & Diagnostics Showcase
-        </footer>
-    </div>
-
-</body>
-</html>
