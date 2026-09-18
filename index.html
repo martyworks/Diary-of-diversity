@@ -50,7 +50,7 @@
             padding: 0 1.5rem;
         }
 
-        /* --- Updated Header Section for Image Banner --- */
+        /* --- Header Section --- */
         header {
             padding: 3rem 0;
             text-align: center;
@@ -150,10 +150,6 @@
             font-weight: 700;
         }
 
-        .card li:last-child {
-            margin-bottom: 0;
-        }
-
         /* --- Project Gallery --- */
         .gallery-grid {
             display: grid;
@@ -183,16 +179,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
             overflow: hidden;
         }
 
+        /* Add a zoom-in cursor so users know it is clickable */
         .image-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .image-frame img:hover {
+            transform: scale(1.05);
         }
 
         .gallery-body {
@@ -210,6 +211,47 @@
             font-size: 0.88rem;
             color: var(--text-secondary);
             line-height: 1.5;
+        }
+
+        /* --- Lightbox / Fullscreen Viewer --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: white;
+            font-size: 3rem;
+            font-weight: 300;
+            cursor: pointer;
+            line-height: 1;
         }
 
         /* --- Footer --- */
@@ -232,7 +274,7 @@
     <div class="container">
         <!-- Header Section -->
         <header>
-            <img src="martys_works_header.jpg" alt="Marty's Works" class="header-banner">
+            <img src="Gemini_Generated_Image_qly68cqly68cqly6 (1).jpeg" alt="Marty's Works" class="header-banner">
         </header>
 
         <!-- Capabilities Section -->
@@ -342,6 +384,32 @@
             Marty's Works — Systems, Trades & Diagnostics Showcase
         </footer>
     </div>
+
+    <!-- Lightbox Overlay (Hidden by default) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Fullscreen Project Image">
+    </div>
+
+    <!-- Script to handle image clicking and zooming -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryImages = document.querySelectorAll('.image-frame img');
+
+        // Open lightbox when a gallery image is clicked
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        // Close lightbox when clicking anywhere on the dark overlay or the 'X'
+        lightbox.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+        });
+    </script>
 
 </body>
 </html>
